@@ -39,6 +39,7 @@ namespace sampleCalculator
             textBox1.Text = input_str;
         }
 
+        // 5個の演算子が対象
         private void button15_Click(object sender, EventArgs e)
         {
             double num1 = result;
@@ -75,10 +76,23 @@ namespace sampleCalculator
             if (operatorBtn == "=")
                 operatorBtn = "";
         }
-
+        
+        // 桁下げキー（▶）が対象
         private void button19_Click(object sender, EventArgs e)
         {
-
+            var str_carryDown = ""; 
+            if (textBox1.Text.Length != 1)
+            {
+                // 末尾の１文字を削除
+                str_carryDown = textBox1.Text.Remove(textBox1.Text.Length - 1, 1);
+                textBox1.Text = str_carryDown;
+                input_str = str_carryDown;
+            }
+            else
+            {
+                textBox1.Text = "0";
+                input_str = str_carryDown;
+            }
         }
 
         private void button20_Click(object sender, EventArgs e)
