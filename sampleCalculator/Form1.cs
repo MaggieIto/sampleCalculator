@@ -20,7 +20,7 @@ namespace sampleCalculator
         double result = 0;
         string operatorBtn = null;
 
-        // 0～9, 00と.の計12個のボタンが対象
+        // 数値入力メソッド. 0～9, 00と.の計12個のボタンが対象.
         private void button1_Click_1(object sender, EventArgs e)
         {
             // senderの詳しい情報を取り扱えるようにする. type of objectのsenderをtype of Buttonにキャスト
@@ -29,6 +29,12 @@ namespace sampleCalculator
             // 押されたボタンの数字
             string text = btn.Text;
 
+            DisplayText(text);
+        }
+
+        // 数値表示メソッド
+        private void DisplayText(string text)
+        {
             // 既に入力された文字と新規入力文字と、両方に小数点がある場合、表示をスキップする
             if (!(input_str.Contains(".") && text.Contains(".")))
             {
@@ -39,7 +45,7 @@ namespace sampleCalculator
             textBox1.Text = input_str;
         }
 
-        // 5個の演算子が対象
+        // 計算メソッド. 5個の演算子が対象
         private void button15_Click(object sender, EventArgs e)
         {
             double num1 = result;
