@@ -28,7 +28,6 @@ namespace sampleCalculator
 
             // 押されたボタンの数字
             string text = btn.Text;
-
             DisplayText(text);
         }
 
@@ -45,8 +44,17 @@ namespace sampleCalculator
             textBox1.Text = input_str;
         }
 
-        // 計算メソッド. 5個の演算子が対象
+        // 演算子入力メソッド. 5個の演算子が対象
         private void button15_Click(object sender, EventArgs e)
+        {
+            // 演算子をoperatorBtn変数に入れる
+            DisplayResult(operatorBtn);
+            Button btnOpe = (Button)sender;
+            operatorBtn = btnOpe.Text;
+        }
+
+        // 計算結果表示メソッド
+        private void DisplayResult(string operatorBtn)
         {
             double num1 = result;
             double num2;
@@ -75,14 +83,12 @@ namespace sampleCalculator
 
             // 今入力されている数字をリセットする
             input_str = "";
-            // 演算子をoperatorBtn変数に入れる
-            Button btnOpe = (Button)sender;
-            operatorBtn = btnOpe.Text;
 
+            // ＝が入力された場合、それをリセットする
             if (operatorBtn == "=")
                 operatorBtn = "";
         }
-        
+
         // 桁下げキー（▶）が対象
         private void button19_Click(object sender, EventArgs e)
         {
