@@ -37,7 +37,10 @@ namespace sampleCalculator
         {
             char keyChar = e.KeyChar;
             string text = keyChar.ToString();
-            DisplayText(text);
+
+            // 数値以外を受け付けない
+            if (text.Any("0123456789".Contains))
+                DisplayText(text);
         }
 
         // 数値表示メソッド
