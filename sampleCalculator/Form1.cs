@@ -12,14 +12,15 @@ namespace sampleCalculator
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
         string input_str = "";
         double result = 0;
         string operatorBtn = null;
 
+        public Form1()
+        {
+            InitializeComponent();
+            KeyPress += new KeyPressEventHandler(keyPress);
+        }
         // 数値入力メソッド. 0～9, 00と.の計12個のボタンが対象.
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -28,6 +29,14 @@ namespace sampleCalculator
 
             // 押されたボタンの数字
             string text = btn.Text;
+            DisplayText(text);
+        }
+
+        // keyboardによる数値入力メソッド
+        private void keyPress(object sender, KeyPressEventArgs e)
+        {
+            char keyChar = e.KeyChar;
+            string text = keyChar.ToString();
             DisplayText(text);
         }
 
@@ -48,6 +57,7 @@ namespace sampleCalculator
         private void button15_Click(object sender, EventArgs e)
         {
             // 演算子をoperatorBtn変数に入れる
+            // 一つ前の演算子による計算を実行後、今回押された演算子をoperatorBtnに代入
             DisplayResult(operatorBtn);
             Button btnOpe = (Button)sender;
             operatorBtn = btnOpe.Text;

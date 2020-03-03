@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.KeyPreview = true;
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -57,7 +58,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox1.Location = new System.Drawing.Point(63, 32);
+            this.textBox1.Location = new System.Drawing.Point(43, 49);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(228, 31);
             this.textBox1.TabIndex = 0;
