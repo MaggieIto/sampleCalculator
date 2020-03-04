@@ -14,7 +14,7 @@ namespace sampleCalculator
     {
         string input_str = "";
         double result = 0;
-        string operatorBtn = null;
+        string operatorBtnOrKey = null;
 
         public Form1()
         {
@@ -32,15 +32,23 @@ namespace sampleCalculator
             DisplayText(text);
         }
 
-        // keyboardによる数値入力メソッド
+        // keyboardによる入力メソッド
         private void keyPress(object sender, KeyPressEventArgs e)
         {
             char keyChar = e.KeyChar;
             string text = keyChar.ToString();
 
-            // 数値以外を受け付けない
-            if (text.Any("0123456789".Contains))
+            // 数字の場合
+            if (text.Any("0123456789.".Contains))
+            {
                 DisplayText(text);
+            }
+            // 演算子の場合
+            else if (text.Any("+-*/=".Contains))
+            {
+                DisplayResult(operatorBtnOrKey);
+                operatorBtnOrKey = text;
+            }
         }
 
         // 数値表示メソッド
@@ -59,15 +67,15 @@ namespace sampleCalculator
         // 演算子入力メソッド. 5個の演算子が対象
         private void button15_Click(object sender, EventArgs e)
         {
-            // 演算子をoperatorBtn変数に入れる
-            // 一つ前の演算子による計算を実行後、今回押された演算子をoperatorBtnに代入
-            DisplayResult(operatorBtn);
+            // 演算子をoperatorBtnOrKey変数に入れる
+            // 一つ前の演算子による計算を実行後、今回押された演算子をoperatorBtnOrKeyに代入
+            DisplayResult(operatorBtnOrKey);
             Button btnOpe = (Button)sender;
-            operatorBtn = btnOpe.Text;
+            operatorBtnOrKey = btnOpe.Text;
         }
 
         // 計算結果表示メソッド
-        private void DisplayResult(string operatorBtn)
+        private void DisplayResult(string operatorBtnOrKey)
         {
             double num1 = result;
             double num2;
@@ -78,17 +86,17 @@ namespace sampleCalculator
                 // 入力文字を数字に変換
                 num2 = double.Parse(input_str);
                 // 四則演算
-                if (operatorBtn == "＋")
+                if (operatorBtnOrKey == "＋" || operatorBtnOrKey == "+")
                     result = num1 + num2;
-                if (operatorBtn == "-")
+                if (operatorBtnOrKey == "-")
                     result = num1 - num2;
-                if (operatorBtn == "×")
+                if (operatorBtnOrKey == "×" || operatorBtnOrKey == "*")
                     result = num1 * num2;
-                if (operatorBtn == "÷")
+                if (operatorBtnOrKey == "÷" || operatorBtnOrKey == "/")
                     result = num1 / num2;
 
                 // 演算子が押されなかった場合、入力文字を結果とする
-                if (operatorBtn == null)
+                if (operatorBtnOrKey == null)
                     result = num2;
             }
             // 画面に計算結果を表示
@@ -98,8 +106,8 @@ namespace sampleCalculator
             input_str = "";
 
             // ＝が入力された場合、それをリセットする
-            if (operatorBtn == "=")
-                operatorBtn = "";
+            if (operatorBtnOrKey == "=")
+                operatorBtnOrKey = "";
         }
 
         // 桁下げキー（▶）が対象
